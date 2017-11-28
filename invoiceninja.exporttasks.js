@@ -12,4 +12,5 @@ $('table.data-table').each(function(k,table){
     });
 }).parent().find('table,td,th').attr('style','border:1px solid black;border-collapse:collapse;font-family:Arial;padding:8px');
 
-document.write($('table.data-table')[0].outerHTML);
+var win = window.open("", "Tasks report", "");
+win.document.body.innerHTML = $('table.data-table')[0].outerHTML;
