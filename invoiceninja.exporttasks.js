@@ -1,3 +1,8 @@
+function nl2br (str, is_xhtml) {   
+    var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';    
+    return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ breakTag +'$2');
+}
+
 $('table.data-table').each(function(k,table){
 	console.log(k,table);
 	$(table).find('tr').each(function(kt,line){
@@ -6,8 +11,8 @@ $('table.data-table').each(function(k,table){
 			if(kc==0||kc==6||kc==7)
 				$cell.remove();
 			else{
-				$cell.text($cell.text());
-    	    }
+				$cell.html(nl2br($cell.text()));
+    	    		}
         });
     });
 }).parent().find('table,td,th').attr('style','border:1px solid black;border-collapse:collapse;font-family:Arial;padding:8px');
